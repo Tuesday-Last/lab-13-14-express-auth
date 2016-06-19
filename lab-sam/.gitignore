@@ -6,6 +6,7 @@ test/data
 .DS_Store
 .AppleDouble
 .LSOverride
+evn.sh
 
 ### Linux ###
 *~

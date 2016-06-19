@@ -15,5 +15,10 @@ exports.newUser = function(reqBody){
   .then( user => user.generateToken())
   .then( token => resolve(token))
   .catch(reject)
-});
+  });
+};
+
+exports.removeAllUsers = function(){
+  debug('removeAllUsers');
+  return User.remove({})
 };

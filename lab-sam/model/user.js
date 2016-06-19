@@ -8,8 +8,8 @@ const crypto = require('crypto');
 const jwt = require('jsonwebtoken');
 
 const userSchema = mongoose.Schema({
-  username: {type: String, required: true, unique: true}
-  password: {type: String, required: true}
+  username: {type: String, required: true, unique: true},
+  password: {type: String, required: true},
   findHash: {type: String, unique: true}
 });
 
@@ -23,7 +23,7 @@ userSchema.methods.generateHash = function(password){
   });
 };
 
-userSchema.methods.compareHash = function {
+userSchema.methods.compareHash = function(password){
   debug('compareHashes');
   return new Promise((resolve, reject) =>{
     bcrypt.compare( password, this.password, (err, result) => {

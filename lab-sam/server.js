@@ -7,8 +7,8 @@ const httpErrors = require('http-errors');
 const debug = require('debug')('familiar:server');
 
 //my stuff
-const handleError = require('./lib/handle-error');
-// const authRouter = require('./route/auth-router');
+const handleError = require('./lib/error-handler');
+const newUserRouter = require('./route/new-user-router');
 //in app stuff
 const app = express();
 const port = process.env.PORT || 3000;
@@ -19,6 +19,7 @@ mongoose.connect(mongoURI);
 
 app.use(morgan('dev'));
 
+app.use('/api', newUserRouter);
 app.all('*', function(req, res, next){
   debug('404 ALL route');
   next(httpErrors(404, 'route has not been writen yet'))
