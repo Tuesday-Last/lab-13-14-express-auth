@@ -6,9 +6,9 @@ const httpErrors = require('http-errors');
 
 module.exports = function(err, req, res, next){
   console.error(err.message);
-  if (err.status && err.name){
+  if (AppError.isAppError(err)){
     debug('http-error');
-    res.status(err.status).send(err.name);
+    res.status(err.status).send(err.responseMessage);
     next()
     return;
   }
